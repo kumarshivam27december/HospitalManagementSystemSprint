@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="Hospital.API/Hospital.API.csproj" />
+  <Project Path="Hospital.Application/Hospital.Application.csproj" />
+  <Project Path="Hospital.ConsoleApp/Hospital.ConsoleApp.csproj" />
+  <Project Path="Hospital.Core/Hospital.Domain.csproj" />
+  <Project Path="Hospital.Infrastructure/Hospital.Infrastructure.csproj" />
+  <Project Path="Hospital.SharedKernel/Hospital.SharedKernel.csproj" />
+  <Project Path="Hospital.Web/Hospital.Web.csproj" />
+</Solution>
