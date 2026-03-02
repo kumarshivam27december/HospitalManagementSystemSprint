@@ -8,7 +8,7 @@ namespace Hospital.Domain.Interfaces
     public interface IPatientService
     {
         void AddPatient(Patient patient);
-        IEnumerable<Patient> GetAllPatients();
+        List<Patient> GetAllPatients();
         Patient GetPatientById(int id);
         void UpdatePatient(Patient patient);
         void DeletePatient(int id);

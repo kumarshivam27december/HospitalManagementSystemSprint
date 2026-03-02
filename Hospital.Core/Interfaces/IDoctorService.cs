@@ -8,7 +8,7 @@ namespace Hospital.Domain.Interfaces
     public interface IDoctorService
     {
         void AddDoctor(Doctor doctor);
-        IEnumerable<Doctor> GetAllDoctors();
+        List<Doctor> GetAllDoctors();
         Doctor GetDoctorById(int id);
         void UpdateDoctor(Doctor doctor);
         void DeleteDoctor(int id);
