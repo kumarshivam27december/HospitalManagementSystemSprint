@@ -6,7 +6,7 @@ using System.Text;
 using System.Linq;
 namespace Hospital.Infrastructure.Repositories
 {
-    public class DoctorRepositoryMemory : IRepository<Doctor>
+    public class  DoctorRepositoryMemory : IRepository<Doctor>
     {
         private static List<Doctor> _doctors = new List<Doctor>();
         private static int _idCounter = 1;
