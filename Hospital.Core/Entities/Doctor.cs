@@ -12,5 +12,7 @@ namespace Hospital.Domain.Entities
 
         public decimal ConsultationFee { get; set; }
 
+        public ICollection<Patient> Patients { get; set; } //navigation join doctor get to know about patients
+
     }
 }

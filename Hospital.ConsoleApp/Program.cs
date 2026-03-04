@@ -3,17 +3,42 @@ using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces;
 using Hospital.Infrastructure.Repositories;
 using Hospital.Infrastructure.Logging;
+using Microsoft.EntityFrameworkCore;
+using Hospital.Infrastructure.Data;
+using Microsoft.IdentityModel.Protocols;
+using System.Configuration;
+
 namespace Hospital.ConsoleApp
 {
     public class Program
     {
         public static void Main(string[] args)
         {
+            /*
+            // inmemory repositories
             IRepository<Doctor> doctorRepository = new DoctorRepositoryMemory();
             IDoctorService doctorservice = new DoctorService(doctorRepository);
 
             IRepository<Patient> patientReposity = new PatientRepositoryMemory();
             IPatientService patientservice = new PatientService(patientReposity,doctorRepository);
+            */
+
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+                .UseSqlServer(connectionString)
+                .Options;
+
+            var context = new AppDbContext(options);
+
+            IRepository<Doctor> doctorRepository = new DoctorRepositoryEF(context);
+            IRepository<Patient> patientRepository = new PatientRepositoryEF(context);
+
+
+            IDoctorService doctorservice = new DoctorService(doctorRepository);
+            IPatientService patientservice = new PatientService(patientRepository,doctorRepository);
+
+
             while (true)
             {
                 Console.WriteLine("Hospital management system");
