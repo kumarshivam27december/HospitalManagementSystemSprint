@@ -55,6 +55,32 @@ namespace Hospital.Application
             return patient;
         }
 
+        public Patient FindPatientByName(string name)
+        {
+            var patients = _patientRepository.GetAll();
+
+            var patient = patients.FirstOrDefault(p =>
+                p.Name.ToLower() == name.ToLower());
+
+            if (patient == null)
+            {
+                throw new PatientNotFoundException("Patient not found");
+            }
+
+            return patient;
+        }
+
+        public List<Patient> GetPatientsByDoctor(int doctorId)
+        {
+            return _patientRepository.GetAll()
+                              .Where(p => p.DoctorId == doctorId)
+                              .ToList();
+        }
+
+       
+
+
+
 
         public void UpdatePatient(Patient patient)
         {
@@ -74,6 +100,51 @@ namespace Hospital.Application
             }
             _patientRepository.Delete(id);
         }
+
+        public List<Patient> GetPagedPatients(int pageNumber, int pageSize = 5)
+        {
+            return _patientRepository.GetAll()
+                .OrderBy(p => p.Name) // Always sort before paging for consistent results
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+        }
+
+        public List<Patient> SearchPatients(string name, int minAge, int maxAge, string condition, int? doctorId)
+        {
+            var query = _patientRepository.GetAll().AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                query = query.Where(p => p.Name.Contains(name, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (minAge > 0)
+            {
+                query = query.Where(p => p.Age >= minAge);
+            }
+
+            if (maxAge > 0)
+            {
+                query = query.Where(p => p.Age <= maxAge);
+            }
+
+            if (!string.IsNullOrWhiteSpace(condition))
+            {
+                query = query.Where(p => p.Condition.Contains(condition, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (doctorId.HasValue)
+            {
+                query = query.Where(p => p.DoctorId == doctorId.Value);
+            }
+
+            return query.ToList(); // The query finally executes here
+        }
+
+
+
+
 
     }
 }

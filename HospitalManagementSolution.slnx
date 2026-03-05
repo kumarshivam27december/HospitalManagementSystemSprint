@@ -5,5 +5,6 @@
   <Project Path="Hospital.Core/Hospital.Domain.csproj" />
   <Project Path="Hospital.Infrastructure/Hospital.Infrastructure.csproj" />
   <Project Path="Hospital.SharedKernel/Hospital.SharedKernel.csproj" />
+  <Project Path="Hospital.UI/Hospital.UI.csproj" Id="4d3b73d1-5f8d-4309-8e13-e96c97086aac" />
   <Project Path="Hospital.Web/Hospital.Web.csproj" />
 </Solution>

@@ -25,7 +25,12 @@ namespace Hospital.Infrastructure.Repositories
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var doctor = GetById(id);
+            if (doctor != null)
+            {
+                _context.Doctors.Remove(doctor);
+                _context.SaveChanges();
+            }
         }
 
         public List<Doctor> GetAll()

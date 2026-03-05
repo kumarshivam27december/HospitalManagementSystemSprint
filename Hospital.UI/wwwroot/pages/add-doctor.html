@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Doctor | Hospital System</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Register New Doctor</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="list-doctors.html">List Doctors</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Doctor Information</h2>
+            <form action="#">
+                <div>
+                    <label for="doctorName">Doctor Name:</label>
+                    <input type="text" id="doctorName" name="doctorName" required placeholder="Full Name">
+                </div>
+
+                <div>
+                    <label for="specialization">Specialization:</label>
+                    <input type="text" id="specialization" name="specialization" required placeholder="e.g. Cardiology">
+                </div>
+
+                <div>
+                    <label for="fee">Consultation Fee (₹):</label>
+                    <input type="number" id="fee" name="fee" min="1" required placeholder="1.00">
+                </div>
+
+                <div>
+                    <button type="submit">Submit Doctor</button>
+                    <button type="reset">Reset Form</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hospital Management System</p>
+    </footer>
+</body>
+</html>

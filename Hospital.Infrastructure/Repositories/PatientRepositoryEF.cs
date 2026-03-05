@@ -50,6 +50,8 @@ namespace Hospital.Infrastructure.Repositories
             }
         }
 
+
+
         IEnumerable<Patient> IRepository<Patient>.GetAll()
         {
             return GetAll();

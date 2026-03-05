@@ -63,5 +63,12 @@ namespace Hospital.Application
             }
             _repository.Delete(id);
         }
+
+        public List<Doctor> GetDoctorsSortedByFee()
+        {
+            return _repository.GetAll()
+                              .OrderBy(d => d.ConsultationFee)
+                              .ToList();
+        }
     }
 }
