@@ -1,0 +1,51 @@
+@model IEnumerable<Hospital.Domain.Entities.Patient>
+
+@{
+    ViewData["Title"] = "Advanced Search Results";
+}
+
+<div class="glass-card">
+    <h1 class="mb-4">Advanced Search Results</h1>
+
+    <p>
+    <a asp-action="AdvancedSearch" class="btn btn-secondary mb-3">New Search</a>
+</p>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Age)</th>
+                <th>@Html.DisplayNameFor(model => model.Condition)</th>
+                <th>@Html.DisplayNameFor(model => model.AppointmentDate)</th>
+                <th>Doctor ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Age)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Condition)</td>
+                    <td>@item.AppointmentDate.ToString("yyyy-MM-dd")</td>
+                    <td>@Html.DisplayFor(modelItem => item.DoctorId)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.PatientId" class="btn btn-sm btn-warning">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.PatientId" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        No patients found matching your search criteria.
+    </div>
+}
+</div>

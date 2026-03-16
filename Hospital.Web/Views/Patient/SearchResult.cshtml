@@ -1,0 +1,59 @@
+@model Hospital.Domain.Entities.Patient
+
+@{
+    ViewData["Title"] = "Search Result";
+}
+
+<div class="glass-card">
+    <h1 class="mb-4">Search Result</h1>
+
+    @if (Model != null)
+{
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Age)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Age)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Condition)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Condition)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.AppointmentDate)
+            </dt>
+            <dd class="col-sm-9">
+                @Model.AppointmentDate.ToString("yyyy-MM-dd")
+            </dd>
+            <dt class="col-sm-3">
+                Doctor ID
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.DoctorId)
+            </dd>
+        </dl>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">
+        No patient found with that name.
+    </div>
+}
+
+<div>
+    <a asp-action="Search" class="btn btn-secondary">Back to Search</a> |
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+</div>

@@ -1,0 +1,51 @@
+@model Hospital.Domain.Entities.Patient
+
+@{
+    ViewData["Title"] = "Delete Patient";
+}
+
+<div class="glass-card">
+    <h1 class="text-danger mb-4">Delete Patient</h1>
+    <h3 class="mb-4">Are you sure you want to delete this?</h3>
+    <div>
+        <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Condition)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Condition)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.AppointmentDate)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.AppointmentDate.ToString("yyyy-MM-dd")
+        </dd>
+        <dt class="col-sm-3">
+            Doctor ID
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.DoctorId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="PatientId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>
+</div>

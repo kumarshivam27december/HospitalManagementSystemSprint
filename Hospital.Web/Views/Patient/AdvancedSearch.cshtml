@@ -1,0 +1,59 @@
+@{
+    ViewData["Title"] = "Advanced Search";
+    var doctors = ViewBag.Doctors as IEnumerable<Hospital.Domain.Entities.Doctor>;
+}
+
+<div class="glass-card">
+    <h1 class="mb-4">Advanced Patient Search</h1>
+
+    <hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="AdvancedSearch" method="get">
+            <div class="form-group mb-3">
+                <label for="searchName" class="control-label">Name</label>
+                <input type="text" id="searchName" name="searchName" class="form-control" placeholder="Enter name (optional)" />
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="minAge" class="control-label">Min Age</label>
+                        <input type="number" id="minAge" name="minAge" class="form-control" value="0" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="maxAge" class="control-label">Max Age</label>
+                        <input type="number" id="maxAge" name="maxAge" class="form-control" value="0" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="searchCondition" class="control-label">Condition</label>
+                <input type="text" id="searchCondition" name="searchCondition" class="form-control" placeholder="Enter condition (optional)" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="searchDocId" class="control-label">Doctor ID</label>
+                <select id="searchDocId" name="searchDocId" class="form-control">
+                    <option value="">-- Any Doctor --</option>
+                    @if (doctors != null)
+                    {
+                        foreach (var doc in doctors)
+                        {
+                            <option value="@doc.DoctorId">@doc.Name (@doc.Specialization)</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
